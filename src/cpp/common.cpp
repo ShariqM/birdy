@@ -45,7 +45,13 @@ void run_ode(double** output, double* initial_state, double duration, double dt,
     double next_state[2] = {initial_state[0], initial_state[1]};
     int max_steps = (int) ceil(duration / dt);
 
-    const gsl_odeiv2_step_type* T = gsl_odeiv2_step_rk8pd;
+    //const gsl_odeiv2_step_type* T = gsl_odeiv2_step_rk8pd;
+    //const gsl_odeiv2_step_type* T = gsl_odeiv2_step_rk4imp;
+    //const gsl_odeiv2_step_type* T = gsl_odeiv2_step_rk1imp;
+    //const gsl_odeiv2_step_type* T = gsl_odeiv2_step_bsimp;
+    //const gsl_odeiv2_step_type* T = gsl_odeiv2_step_rk4;
+    const gsl_odeiv2_step_type* T = gsl_odeiv2_step_rkck;
+
     gsl_odeiv2_step* s = gsl_odeiv2_step_alloc(T, 2);
 
 	gsl_odeiv2_control* c = gsl_odeiv2_control_y_new(1e-8, 1e-10);
